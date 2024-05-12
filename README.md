@@ -1,5 +1,4 @@
 # BlogIT-Blogging-Web-App-Using-Django
-# BlogIT
 
 BlogIT is a powerful web application built on Django and Bootstrap, designed to revolutionize the way you create, manage, and share blogs. Whether you're a seasoned blogger or just starting out, BlogIT provides an intuitive platform for expressing your ideas and connecting with like-minded individuals.
 
@@ -33,7 +32,7 @@ BlogIT is a powerful web application built on Django and Bootstrap, designed to 
 1. Clone the repository:
 
 ```bash
-1. git clone https://github.com/mu2602659/BlogIT.git
+1. git clone https://github.com/mu2602659/BlogIT-Blogging-Web-App-Using-Django.git
 
 2. Navigate to the project directory:
 cd BlogIT
