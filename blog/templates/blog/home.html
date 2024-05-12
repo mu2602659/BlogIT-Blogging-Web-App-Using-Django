@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+    .custom-color {
+        color: black;
+        transition: color 0.3s; /* Add transition effect */
+    }
+
+    .custom-color:hover {
+        color: #800000; /* Change color on hover */
+    }
+</style>
+
+{% for post in posts %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <img src="{% static post.author.image %}" alt="">
+            <a class="mr-2 custom-color" href="#">{{ post.author }}</a>
+            <small class="text-muted custom-color">{{ post.date_posted | date:"F d, Y" }}</small>
+        </div>
+        <h2><a class="article-title custom-color" href="{% url 'detail' post.id %}">{{ post.title }}</a></h2>
+        <p class="article-content custom-color">{{ post.content }}</p>
+    </div>
+</article>
+{% endfor %}
+
+{% endblock content %}

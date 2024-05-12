@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    {% if title %}
+        <title>BlogIT - {{ title }}</title>
+    {% else %}
+        <title>BlogIT</title>
+    {% endif %}
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light gray */
+        }
+        .navbar {
+            background-color: white; /* White */
+            border-bottom: 2px solid maroon; /* Maroon border */
+            height: 70px; /* Increase navbar height */
+            font-size: 20px; /* Increase font size of navbar elements */
+        }
+        .nav-link{
+        font-weight: 500; /* Make the logo text bold */
+         color: black !important; /* Black */
+        }
+        .nav-link:hover {
+            color: maroon !important; /* Maroon on hover */
+        }
+        .navbar-brand {
+            font-size: 40px; /* Increase font size of logo text */
+            font-weight: bold; /* Make the logo text bold */
+            background: linear-gradient(to right, #800000, black); /* Apply gradient background */
+            -webkit-background-clip: text; /* Clip text to background */
+            -webkit-text-fill-color: transparent; /* Make text transparent */
+            letter-spacing: 2px; /* Add letter spacing */
+        }
+        .navbar-brand:hover {
+            color: maroon !important; /* Maroon on hover */
+        }
+        .container {
+            margin-top: 90px; /* Increase margin-top to accommodate the fixed navbar */
+        }
+        .alert {
+            margin-top: 20px;
+        }
+        /* Custom styles for the collapsed navbar */
+       @media (max-width: 768px) {
+    .navbar-collapse {
+        background-color: maroon; /* Change background color of collapsed navbar */
+        padding: 20px; /* Add padding to the collapsed navbar */
+    }
+    .navbar-collapse .navbar-nav .nav-link {
+        color: white !important; /* Change text color of navbar links */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"> <!-- Make navbar fixed to the top -->
+        <a class="navbar-brand" href="{% url 'blog-home' %}">
+            <span class="first-letter">B</span>log<span class="second-letter">I</span>T
+        </a>
+ 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'blog-home' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog-about' %}">About</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'create_post' %}">Create Post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
